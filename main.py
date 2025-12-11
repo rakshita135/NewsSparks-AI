@@ -12,7 +12,7 @@ from reportlab.lib.pagesizes import letter # type: ignore
 from reportlab.lib.units import inch # type: ignore
 from io import BytesIO
 
-client=genai.Client(api_key=GEMINI_API_KEY)
+client=genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 model_name="models/gemini-flash-latest"
 
 def fetch_news():
