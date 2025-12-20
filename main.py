@@ -16,7 +16,7 @@ client=genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 model_name="models/gemini-flash-latest"
 
 def fetch_news():
-    url="https://newsdata.io/api/1/latest?apikey=pub_77f90df199c74cc18bd1397aac8e3696&country=in&language=hi,en,gu&category=breaking,education,science,sports,technology"
+    url=f"https://newsdata.io/api/1/latest?apikey=pub_77f90df199c74cc18bd1397aac8e3696&country=in&language=en&category={Category}"
     response=requests.get(url)
 
     if response.status_code != 200:
@@ -90,7 +90,9 @@ language=st.selectbox("Enter your Preffered Language for summary:",
                       lang_list,
                       index=0,
                       placeholder="Select a language")
-context=st.text_input("Enter you interest")
+ctgy=['breaking','business','crime','domestic','education','environment','entertainment','food','health','lifestyle','politics','science','sports','technology','tourism','world']
+Category=st.selectbox("Enter you area of interest:",ctgy,index=0)
+context=st.text_input("Enter Instructions:")
 
 if st.button("Fetch and Summarize News"):
     st.info("Fetching news...")
